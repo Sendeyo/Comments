@@ -3,16 +3,17 @@ from access_dict_by_dot import AccessDictByDot
 
 from .models import Token
 
-try:
-    token = Token.objects.get(id=1)
-    token = (token.value)
-except Exception as e:
-    token = ""
-    print(e)
+
 
 # token = "EAAGxFiSPvZAsBAGW9bgJ8fTjiDUhRCcyIj5kwOP8mIKBrg1s7fZADI5oB0WFEJCaxe3vQTC2xcrOVrGKeV9FofSQvQJaR38VsgoHajMuwVZBdlyOxtBs3YXZCeprfRZC8lDg5X4XgnQZCW2ZBti90bLxs6rY36ZCF4p6lpTzmQmY3DPjPrOYUns3mZCsRHhmZAjTNYjslNnnpZAa3Iz8ljIXs546Cu80B9GL4JdPT2LPkDNi3u7kAtWAiW2"
 
 def getData(req):
+    try:
+        token = Token.objects.get(id=1)
+        token = (token.value)
+    except Exception as e:
+        token = ""
+        print(e)
     try:
         graph = facebook.GraphAPI(access_token=token, version=3.1)
         resp = graph.request(f"{req}")
